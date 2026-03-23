@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"D:/SBME/3rd year/2nd term/CV/27/task2/ImageLab_Project/Backend/build/cmake_install.cmake",
+		"D:/SBME/3rd year/2nd term/CV/27/task2/ImageLab_Project/Backend/build/pybind11/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

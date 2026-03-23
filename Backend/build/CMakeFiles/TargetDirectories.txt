@@ -1,0 +1,5 @@
+D:/SBME/3rd year/2nd term/CV/27/task2/ImageLab_Project/Backend/build/CMakeFiles/image_lab_backend.dir
+D:/SBME/3rd year/2nd term/CV/27/task2/ImageLab_Project/Backend/build/CMakeFiles/edit_cache.dir
+D:/SBME/3rd year/2nd term/CV/27/task2/ImageLab_Project/Backend/build/CMakeFiles/rebuild_cache.dir
+D:/SBME/3rd year/2nd term/CV/27/task2/ImageLab_Project/Backend/build/pybind11/CMakeFiles/edit_cache.dir
+D:/SBME/3rd year/2nd term/CV/27/task2/ImageLab_Project/Backend/build/pybind11/CMakeFiles/rebuild_cache.dir
