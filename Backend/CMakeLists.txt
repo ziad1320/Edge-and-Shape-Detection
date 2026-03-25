@@ -1,33 +1,28 @@
-cmake_minimum_required(VERSION 3.10)
-project(image_lab_backend)
+cmake_minimum_required(VERSION 3.15)
+project(Backend)
 
-# Use C++17 standard
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# Generate compile commands for IDE support
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# 1. ADD PYBIND11 (from submodule folder)
-add_subdirectory(pybind11)
-
-# 2. FIND OPENCV (This works with the MSYS2 MinGW install)
+# Find OpenCV
 find_package(OpenCV REQUIRED)
-message(STATUS "OpenCV found at ${OpenCV_DIR}")
-include_directories(${OpenCV_INCLUDE_DIRS})
 
-# 3. DEFINE THE SOURCE FILES
-set(SOURCES
-    src/main.cpp
-    src/lab_functions.cpp
-    src/snake.cpp
-    src/shapes.cpp
+# Automatically download and include Pybind11
+include(FetchContent)
+FetchContent_Declare(
+  pybind11
+  GIT_REPOSITORY https://github.com/pybind/pybind11.git
+  GIT_TAG        v3.0.2
 )
+FetchContent_MakeAvailable(pybind11)
 
-# 4. CREATE THE PYBIND11 MODULE
-# This will produce 'image_lab_backend.cp[python_version]-win_amd64.pyd'
-pybind11_add_module(image_lab_backend ${SOURCES})
+# Build C++ code into a Python module
+pybind11_add_module(task2_backend canny_and_shapes_detection.cpp)
+pybind11_add_module(image_lab_backend contour_fitting_objects.cpp)
 
-# 5. LINK LIBRARIES
+# Link the required libraries
+target_include_directories(task2_backend PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_link_libraries(task2_backend PRIVATE ${OpenCV_LIBS})
+
+target_include_directories(image_lab_backend PRIVATE ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(image_lab_backend PRIVATE ${OpenCV_LIBS})
-
-# Set output name explicitly to avoid python version suffixes if preferred
-set_target_properties(image_lab_backend PROPERTIES PREFIX "")
-set_target_properties(image_lab_backend PROPERTIES SUFFIX ".pyd")
